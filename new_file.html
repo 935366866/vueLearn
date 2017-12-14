@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="css/bootstrap-datetimepicker.css" rel="stylesheet" />
+	<style>
+	body{
+		-webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none; 
+	}
+
+	input{
+		padding: 0;
+	}
+	
+	.text{
+		width: 50px;
+		text-align: center;
+		border: 1px solid #333;
+	}
+	.left,.right{
+		display: inline-block;
+		width: 30px;
+		text-align: center;
+		cursor: pointer;
+	}
+	.left{
+		border-top: 1px solid #333;
+		border-bottom: 1px solid #333;
+		border-left: 1px solid #333;
+		border-bottom-left-radius: 20px;
+		border-top-left-radius: 20px;
+	}
+	.right{
+		border-top: 1px solid #333;
+		border-bottom: 1px solid #333;
+		border-right: 1px solid #333;
+		border-bottom-right-radius: 20px;
+		border-top-right-radius: 20px;
+	}
+	
+	table tr:first-child,tr:nth-child(2){
+		background-color: #ccc;
+	}
+	table tr{
+		text-align: center;
+	}
+	
+	ul{
+		padding: 0;
+		margin: 0;
+	}
+	ul li{
+		list-style: none;
+		border-bottom: 1px solid #333;
+		text-align: left;
+		text-indent: 5px;
+		height: 30px;
+		line-height: 30px;
+		
+	}
+	ul li:last-child{
+		border-bottom: none;
+		
+	}
+	</style>
+	<body>
+		<div class="container" style="margin-top: 20px;">
+			<div style="height: 30px;line-height: 34px;">
+				<span  class="left">-</span><input class="text" value="0" type="text" /><span class="right">+</span>
+			</div>
+			<div style="margin-top: 50px;">
+				<table border="1px solid #333" width="500px">
+					<tr>
+						<td colspan="4">
+							<span style="float: left;margin-left: 5px;">2017-10-29&nbsp;11:45</span>
+							<span style="float: right;margin-right: 5px;">订单号：12334566</span>
+						</td>
+					</tr>
+					<tr>
+						<td>订单详情</td>
+						<td>收货人</td>
+						<td>金额</td>
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>中配*2</li>
+								<li>中配*2</li>
+								<li>中配*2</li>
+								<li>中配*2</li>
+							</ul>
+						</td>
+						<td>李雷</td>
+						<td>966.00</td>
+						<td>
+							<div><a>取消订单</a></div>
+							<div><a>订单详情</a></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div style="margin-top: 50px;">
+				
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script>
+			document.onselectstart=new Function("return false");
+			$(".left").on("click",function(){
+				var value=parseInt($(".text").val())-1;
+				if(value>=0){
+					$(".text").val(value);
+				}
+				
+			})
+			$(".right").on("click",function(){
+				var value=parseInt($(".text").val())+1;
+				$(".text").val(value)
+			})
+		</script>
+	</body>
+</html>

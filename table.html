@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button class="btn btn-primary">合并</button>
+		<table  width="400px" border="1">
+		  <tr>
+		    <th>Month</th>
+		    <th>Savings</th>
+		  </tr>
+		  <tr>
+		    <td colspan="2">January</td>
+		  </tr>
+		  <tr>
+		    <td colspan="2">February</td>
+		  </tr>
+		</table>
+		<table width="400" border="1" id="myTable"> 
+<tr> 
+<td>a</td> 
+<td>1</td> 
+<td>2</td> 
+<td>3</td> 
+<td>4</td> 
+<td>5</td> 
+</tr> 
+<tr> 
+<td>a</td> 
+<td>1</td> 
+<td>2</td> 
+<td>3</td> 
+<td>4</td> 
+<td>6</td> 
+</tr> 
+<tr> 
+<td>a</td> 
+<td>2</td> 
+<td>3</td> 
+<td>3</td> 
+<td>4</td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td>b</td> 
+<td>3</td> 
+<td>4</td> 
+<td>6</td> 
+<td>7</td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td>b</td> 
+<td>3</td> 
+<td>5</td> 
+<td>6</td> 
+<td>7</td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td>cc</td> 
+<td>2</td> 
+<td>3</td> 
+<td>4</td> 
+<td>5</td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td>cc</td> 
+<td>2</td> 
+<td>3</td> 
+<td>5</td> 
+<td>5</td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td>d</td> 
+<td>1</td> 
+<td>2</td> 
+<td>3</td> 
+<td>4</td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td>e</td> 
+<td>1</td> 
+<td>2</td> 
+<td>3</td> 
+<td>4</td> 
+<td> </td> 
+</tr> 
+</table>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript"> 
+		function mc(tableId, startRow, endRow, col) { 
+			var tb = document.getElementById(tableId); 
+			if (col >= tb.rows[0].cells.length) { 
+			return; 
+			} 
+			if (col == 0) { endRow = tb.rows.length-1; } 
+			for (var i = startRow; i < endRow; i++) { 
+			if (tb.rows[startRow].cells[col].innerHTML == tb.rows[i + 1].cells[0].innerHTML) { 
+			tb.rows[i + 1].removeChild(tb.rows[i + 1].cells[0]); 
+			tb.rows[startRow].cells[col].rowSpan = (tb.rows[startRow].cells[col].rowSpan | 0) + 1; 
+			if (i == endRow - 1 && startRow != endRow) { 
+			mc(tableId, startRow, endRow, col + 1); 
+			} 
+			} else { 
+			mc(tableId, startRow, i + 0, col + 1); 
+			startRow = i + 1; 
+			} 
+			} 
+		} 
+		$(".btn").click(function(){
+			mc('myTable',0,0,0); 
+		})
+		
+</script> 
+</html>

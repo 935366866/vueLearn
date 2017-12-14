@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="css/bootstrap.min.css"  rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="container">
+			<button class="btn btn-primary" style="float: left;">提交</button>
+			<div class="panel panel-default" style="float: right;width: 600px;height: 600px;">
+				<div class="panel-body" id="content">
+					<div id="loading"></div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			$(function(){
+				$(".btn").on("click",function(){
+					$.ajax({
+						url: 'json/json.json',  
+						type:'get',
+						dataType: "json",
+						beforeSend:function(XMLHttpRequest){ 
+				            $("#loading").html("<img src='img/timg.gif' />"); 
+				        }, 
+						success:function(data) {
+							$("#loading").empty(); 
+							$("#loading").html("<div id='myTable'></div>")
+							$("#myTable").append(data.data["teacher"])
+						},    
+						error : function(XMLHttpRequest) {
+							alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);
+						}
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p v-if="ok">yes</p>
+			<p v-else="no">no</p>
+			<template v-if="ok">
+				<p>我的名字叫苏逸轩</p>
+			</template>
+			<template v-else>
+				<p>我的名字叫默默</p>
+			</template>
+			<p v-if="type=='A'">A</p>
+			<p v-else-if="type=='B'">B</p>
+			<p v-else-if="type=='C'">C</p>
+			<p v-else>not A/B/C</p>
+			<template v-if="loginType === 'username'">
+			  <label>Username</label>
+			  <input id="1" placeholder="Enter your username" key="username-input">
+			</template>
+			<template v-else>
+			  <label>Email</label>
+			  <input id="2" placeholder="Enter your email address" key="email-input">
+			</template>
+			<button id="toggle">切换</button>
+		</div>	
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				ok:true,
+				type:"E",
+				loginType:"username"
+			}
+		})
+		$("#toggle").on("click",function(){
+			vm.loginType="email"
+		})
+	</script>
+</html>

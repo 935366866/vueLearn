@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		.active{
+			color: red;
+		}
+		.static{
+			border: 1px solid #003399;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<div v-bind:class="{ active: isActive }">1111</div>
+			<!--可以与普通class属性共存-->
+			<div class="static"
+			     v-bind:class="{ active: isActive, 'text-danger': hasError }">2222
+			</div>
+			<div v-bind:class="classObject">数据对象不必内联定义在模板里</div>
+			<div v-bind:class="[activeClass, errorClass]">数组语法</div>
+			<div v-bind:class="[isActive ? activeClass :  errorClass]">三元表达式</div>
+			<div v-bind:class="[{ active: isActive }, errorClass]">在数组中使用对象语法</div>
+			<my-component class="baz boo"></my-component>
+			<my-component v-bind:class="{ active: isActive }"></my-component>
+		</div>	
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		Vue.component('my-component', {
+		  template: '<p class="foo bar">自定义组件使用class属性，该属性会添加到根元素上</p>'
+		})
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				isActive:true,
+				hasError:false,
+				classObject:{
+					active: true,
+    				'text-danger': false
+				},
+				activeClass:"active",
+				errorClass:"static"
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.line{
+				border: 1px solid #13438b;
+				background: #13438b;
+				width: 80%;
+				margin-bottom: 30px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="app">
+			<input v-model="mes" placeholder="请输入" />
+			<p>{{mes}}</p>
+			<textarea v-model="value" placeholder="请输入多行文本">11111111</textarea>
+			<p>{{value}}</p>
+			<input type="checkbox" id="checkbox" v-model="checked">
+			<label for="checkbox">{{ checked }}</label>
+			<input type="checkbox" id="xiaohong" value="xiaohong" v-model="names" />
+			<label for="xiaohong">xiaohong</label>
+			<input type="checkbox" id="lili" value="lili" v-model="names" />
+			<label for="lili">lili</label>
+			<input type="checkbox" id="junjun" value="junjun" v-model="names" />
+			<label for="junjun">junjun</label>
+			 <br>
+  			<span>Checked names: {{ names }}</span>
+  			<div class="line"></div>
+  			<input type="radio" id="nv" value="nv" v-model="sexs" />
+  			<label for="nv">女</label>
+  			<input type="radio" id="nan" value="nan" v-model="sexs" />
+  			<label for="nan">男</label>
+  			<div class="line"></div>
+  			<select v-model="selectVlue">
+  				<option selectVlue  value="">请选择</option>
+  				<option value="B">B</option>
+  				<option value="C">C</option>
+  			</select>
+  			<div class="line"></div>
+			<select multiple="multiple" v-model="selectDatas">
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+			</select>
+			<div class="line"></div>
+			<select v-model="selected">
+				<option v-for="item in items" v-bind:value="item.value">{{item.text}}</option>
+			</select>
+			<span>Selected: {{ selected }}</span>
+			<div class="line">修饰符</div>
+			<input v-model.lazy.number.trim="mes" />
+			<p>{{mes}}</p>
+			
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		var vm=new Vue({
+		 	el:"#app",
+		 	data:{
+		 		mes:"hello",
+		 		value:"",
+		 		checked:false,
+		 		names:["lili","junjun"],
+		 		sexs:"nan",
+		 		selectVlue:"B",
+		 		selectDatas:["A","C"],
+		 		items:[{text:"A",value:"a"},
+		 				{text:"B",value:"b"}
+		 		],
+		 		selected:"b",
+		 		picked:"b"
+		 	}
+		 })
+	</script>
+</html>

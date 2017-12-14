@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{mes}}</p>
+		  	<input v-model="mes" />
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		/*创建实例,数据与方法*/
+		var data={
+			mes:"hello"
+		}
+		var vm=new Vue({
+			el:"#app",
+			data:data,
+			created: function () {
+			    // `this` 指向 vm 实例
+			    console.log('mes is: ' + this.mes)
+			}
+		})
+		console.log(vm.mes)
+		console.log(data.mes)
+//		所以vm.mes=data.mes
+		vm.mes="我的名字"
+		console.log(vm.$el)
+		console.log(vm.$data)
+		// $watch 是一个实例方法
+		vm.$watch('mes', function (newValue, oldValue) {
+		  // 这个回调将在 `vm.a` 改变后调用
+		 console.log(oldValue)
+		})
+		
+		/*实例生命周期钩子*/
+		
+	</script>
+</html>

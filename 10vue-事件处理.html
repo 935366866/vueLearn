@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button v-on:click="add">加 1</button>
+			<button @click="num-=1">减 1</button>  <!--内联写法-->
+			<button v-on:click="say('hi')">Say hi</button>
+			<p>{{num}}</p>
+			<a href="https://www.baidu.com" @click="warn('Form cannot submitted',$event)">提交</a>
+			<input v-on:keyup.13="submit">
+			<input @keyup.enter="submit">
+			<input @keyup.page-down="onPageDown" placeholder="hello">
+			<input @keyup.ctrl.67="onPageDown" placeholder="ctrl">
+			<input @keyup.alt.67="clear">
+			<div @click.ctrl="doSomething">Do something</div>
+			<div style="border: 1px solid #13438b;background: #13438b;margin-bottom: 50px;"></div>
+			<button v-on:click.ctrl="alert('hello')">hello</button>
+			<button v-on:click.ctrl.exact="alert('exact')">exact</button>
+			<button @click.ctrl.exact="onCtrlClick">name</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		var vm=new Vue({
+		 	el:"#app",
+		 	data:{
+		 		num:0
+		 	},
+		 	methods:{
+		 		add:function(){
+		 			return this.num++;
+		 		},
+		 		say:function(message){
+		 			alert(message)
+		 		},
+		 		warn:function(message, event){
+		 			if (event) event.preventDefault();
+ 					alert(message)
+		 		},
+		 		submit:function(){
+		 			alert(1111)
+		 		},
+		 		onPageDown:function(){
+		 			alert("hello");
+		 		},
+		 		clear:function(){
+		 			alert("clear")
+		 		},
+		 		doSomething:function(){
+		 			alert("do thing")
+		 		},
+		 		alert:function(mes){
+		 			alert(mes)
+		 		},
+		 		onCtrlClick:function(){
+		 			alert("my name is xiaoxiao")
+		 		}
+		 	}
+		 })
+	</script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item,index) in items">{{item.text}}</li>
+			</ul>
+			<button id="add" >增加</button>
+			<!--<div v-for="a in food">{{a.text}}</div>-->
+			<div v-for="(value,key) in userProfile">{{value}}+{{key}}</div>
+			<ul style="background: #a5c74e;">
+				<li v-for="n in even(numbers)">{{ n }}</li>
+			</ul>
+			<div style="background: #56b3c4;">
+				<span v-for="n in 10">{{n}} </span>
+			</div>
+			<ul>
+			  <template v-for="item in items">
+			    <li>{{ item.text }}</li>
+			    <li class="divider">{{item.id}}</li>
+			  </template>
+			</ul>
+			<ul>
+				<li v-for="todo in todos" v-if="!todo.isSdult">
+				  {{ todo.name }}
+				</li>
+			</ul>
+			<ul v-if="!todos.length">
+			  <li v-for="todo in todos">
+			    {{ todo }}
+			  </li>
+			</ul>
+			<p v-else>No todos left!</p>
+			<div style="width: 90%;border: 1px solid #13438b;background: #13438b;"></div>
+		</div>	
+		<div id="todo-list-example">
+		  <input
+		    v-model="newTodoText"
+		    v-on:keyup.enter="addNewTodo"
+		    placeholder="Add a todo"
+		  >
+		  <ul>
+		    <li
+		      is="todo-item"
+		      v-for="(todo, index) in todos"
+		      v-bind:key="todo.id"
+		      v-bind:title="todo.title"
+		      v-on:remove="todos.splice(index, 1)"
+		    ></li>
+		  </ul>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				items:[
+					{id:"1",text:"苹果"},
+					{id:"2",text:"橘子"},
+					{id:"3",text:"香蕉"},
+					{id:"4",text:"梨"}
+				],
+				userProfile:{
+					name: 'Anika'
+				},
+				numbers: [ 1, 2, 3, 4, 5 ],
+				todos:[{name:"xiaoxiao",age:18,isSdult:true},
+						{name:"momo",age:3,isSdult:false},
+						{name:"suman",age:26,isSdult:true}
+				]
+			},
+			methods:{
+				even: function (numbers) {
+				    return numbers.filter(function (number) {
+				      return number % 2 === 0
+				    })
+				}
+			}
+		})
+		$("#add").on("click",function(){
+			vm.items.push({id:"5",text:"樱桃"})
+		})
+//		vm.items = vm.items.filter(function (item) {
+//		  return item.text.match(/梨/)
+//		})
+		Vue.set(vm.items, 2, {id:"4",text:"hello"})
+		vm.items.splice(2, 1, {id:"4",text:"hello"})
+//		vm.food=[
+//					{text:"apple"},
+//					{text:"banana"}
+//				]
+
+		Vue.set(vm.userProfile, 'age', 27)
+//		vm.$set(this.userProfile, 'age', 27)
+	</script>
+	<script>
+		Vue.component('todo-item', {
+		  template: '\
+		    <li>\
+		      {{ title }}\
+		      <button v-on:click="$emit(\'remove\')">X</button>\
+		    </li>\
+		  ',
+		  props: ['title']
+		})
+		
+		new Vue({
+		  el: '#todo-list-example',
+		  data: {
+		    newTodoText: '',
+		    todos: [
+		      {
+		        id: 1,
+		        title: 'Do the dishes',
+		      },
+		      {
+		        id: 2,
+		        title: 'Take out the trash',
+		      },
+		      {
+		        id: 3,
+		        title: 'Mow the lawn'
+		      }
+		    ],
+		    nextTodoId: 4
+		  },
+		  methods: {
+		    addNewTodo: function () {
+		      this.todos.push({
+		        id: this.nextTodoId++,
+		        title: this.newTodoText
+		      })
+		      this.newTodoText = ''
+		    }
+		  }
+		})
+	</script>
+</html>

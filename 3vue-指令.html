@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app" style="border: 1px solid #ccc;">
+			<!--绑定属性-->
+			<span v-bind:title="mes">鼠标悬停几秒钟查看此处动态绑定的提示信息</span>   
+			<!--条件语句-->
+			<div v-if="see">true为显示，false不显示</div>
+			<!--循环语句-->
+			<ul>
+				<li v-for="item in lists">{{item.text}}</li>
+			</ul>
+			<select>
+				<option v-for="value in datas">{{value.text}}</option>
+			</select>
+			<!--绑定事件-->
+			<div style="border: 1px solid red;">
+				<p>{{text}}</p>
+				<button type="button" v-on:click="reviseText">修改</button>
+			</div>
+			<!--双向绑定数据-->
+			<div style="border: 1px solid blue;">
+				<p>{{message}}</p>
+				<input type="text" v-model="message" />
+			</div>
+		</div>
+		
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				mes:'页面加载于 ' + new Date().toLocaleString(),
+				see:true,
+				text:"myName",
+				message:"我的名字叫默默",
+				lists:[
+					{
+						text:"好好学习",
+						id:"00"
+					},
+					{
+						text:"天天向上",
+						id:"01"
+					}
+				],
+				datas:[{text:"hello"},{text:"world"}]
+			},
+			methods:{
+				reviseText:function(){
+					this.text=this.text+"hello"
+				}
+			}
+		})
+	</script>
+</html>

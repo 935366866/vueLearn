@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="css/bootstrap.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div style="width: 230px;position: relative; left: 100px;">
+			<div id="tree"></div>
+		</div>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-treeview.js"></script>
+		<script>
+	function getTree(){  
+	   var tree = [
+		    {
+		    	text: "欢迎使用"
+		  	},
+		  	{
+		    	text: "注册及登录",
+		    	state: {
+				    selected: true
+				},
+				href: "#welcom",
+		  	},
+		  	{
+		    	text: "首页"
+		  	},
+			{
+			    text: "数据分析",
+			    nodes: [
+				    {
+				        text: "我的目录"
+				    },
+				    {
+				        text: "分析流程",
+				        nodes: [
+				          {
+				            text: "分析流程类型"
+				          },
+				          {
+				            text: "分析流程使用"
+				          },
+				          {
+				            text: "深度挖掘使用"
+				          }
+				        ]
+				    },
+				    {
+				        text: "我的项目"
+				    },
+				    {
+				        text: "回收站"
+				    }
+				    ,
+				    {
+				        text: "小工具",
+				        nodes: [
+					        {
+					            text: "小工具类型"
+					        },
+					        {
+					            text: "小工具使用"
+					        }
+				        ]
+				    }
+				    ,
+				    {
+				        text: "资源监控"
+				    }
+			    ]
+			},
+			{
+			    text: "帮助"
+			},
+			{
+			    text: "管理系统"
+			},
+			{
+			    text: "退出"
+			}
+		  
+		];
+		return tree;  
+    }  
+	$('#tree').treeview({data:getTree()}); 
+	$('#tree').on('nodeSelected', function(event, data) {
+	 console.log(data.text)
+	});
+
+
+		</script>
+	</body>
+</html>

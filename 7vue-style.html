@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">绑定style</div>
+			<div v-bind:style="styleObject">直接绑定样式对象</div>
+			<div v-bind:style="[baseStyles, overridingStyles]">数组语法</div>
+			<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">heelo</div>
+		</div>	
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				activeColor:"red",
+				fontSize:16,
+				styleObject:{
+					color:'blue',
+					fontSize:30
+				},
+				baseStyles:{
+					color:"yellow",
+					fontSize:40
+				},
+				overridingStyles:{
+					background:"red"
+				}
+			}
+		})
+	</script>
+</html>

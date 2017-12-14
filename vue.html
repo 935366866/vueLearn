@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app" style="border: 1px solid #ccc;">
+		  {{ mes}}
+		  <my-head></my-head>
+		</div>
+		<div id="demo" style="border: 1px solid red;">
+			<my-header></my-header>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		var headchild={
+			template: '<div>i am headchild</div>',
+		}
+		
+		var head = {
+		  template: '<div><my-headchild></my-headchild> this is head</div>',
+		  components:{
+		  	"my-headchild":headchild
+		  }
+		}
+		var app = new Vue({
+		  el: '#app',
+		  data: function() {
+		  	return{
+		  		mes: 'Hello Vue!'
+		  	}
+		    
+		  },
+		  components:{
+		  	"my-head":head
+		  }
+		})
+		console.log(app.$data)
+		
+		//全局注册1
+		Vue.component("my-header",
+			{
+				template:"<h1>田老师{{mes}}红烧肉</h1>",
+				data(){
+					return{
+						mes:"hello"
+					}
+					
+				}
+			}
+			
+		)
+		new Vue({
+		  el: '#demo',
+		  data: {
+		    mes:"hello momo"
+		  }
+		})
+		//局部注册
+		
+		
+		
+//		//定义组件
+//		var MyCompnent=Vue.expand({
+//			template:"<div>hello world</div>"
+//		})
+		
+		//注册组件
+//		Vue.component("my-component","MyCompnent")
+	</script>
+</html>

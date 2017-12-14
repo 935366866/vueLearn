@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p v-once>{{mes}}</p>
+			<p>Using mustaches: {{ rawHtml }}</p>
+			<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+			<p>{{ number + 1 }}</p>
+			<p>{{ok?"yes":"no"}}</p>
+			<p>{{message.split('').reverse().join('')}}</p>
+			<div v-bind:id="'list-' + id"></div>
+			<form v-on:submit.prevent="onSubmit">
+				<input type="text" value="111" />
+				<button type="submit">提交</button>
+			</form>
+			<a :href="url"></a>
+			<button @click="add">增加</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		/*插值{{}}语法*/
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				mes:"hello",
+				rawHtml:'<span style="color:red">hello world</span>',
+				number:3,
+				ok:true,
+				message:"my name is xiaoxiao",
+				id:"appId"
+			},
+			methods:{
+				onSubmit:function(){
+					alert(1111)
+				}
+			}
+		})
+		/*v-once只能一次性的插值,当数据更新时,插值处的内容不会改变*/
+		/*v-html 绑定html并使用*/
+		/*使用 JavaScript 表达式*/
+	</script>
+</html>
